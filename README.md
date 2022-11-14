@@ -1,285 +1,179 @@
-# Phase 2 Project Description
+# King County Home Renovations 
+***
+Author: Hana Kerner
 
-Another module down - you're almost half way there!
+![King County](KingCounty.png)
 
-![awesome](https://raw.githubusercontent.com/learn-co-curriculum/dsc-phase-2-project-v2-3/main/halfway-there.gif)
 
-All that remains in Phase 2 is to put your newfound data science skills to use with a large project!
+## Overview
+***
+Established in 1976, Sotheby’s International Realty has become the world’s premier luxury residential real estate brokerage. With a global footprint and international network spanning across 74 countries and territories, Sotheby's is most involved in New York, France, Italy, Madrid, Miami, Hong Kong, Bahamas, and Tokyo. Sotheby’s is working to gather a more nuanced understanding of the real estate market in King County, Washington. However, rather than selling new homes, their current interests lie with renovations. They have tasked us with gaining insights as to where they should advise homeowner’s to spend their money, when they are looking to renovate. 
 
-In this project description, we will cover:
+Our goal is to help homeowners decide where they should allocate their time, money, and resources when renovating. Our focus is to provide advice to homeowners on how specific renovations may increase the estimated value of their homes, and what dollar value is attached to this. We are looking to gather insights into the historical housing market trends, to be able to provide homeowners with the best possible recommendations.  
 
-* Project Overview: the project goal, audience, and dataset
-* Deliverables: the specific items you are required to produce for this project
-* Grading: how your project will be scored
-* Getting Started: guidance for how to begin working
+Sotheby's is looking to tackle opportunities in markets where they do not have as strong of a footing. They have asked us to analyze the King County housing market. King County is located in the U.S. state of Washington. In the 2020 census, the population was 2,269,675, making it the most populous county in Washington, and the 13th-most populous in the United States. The county seat is Seattle, which is state's most populous city. 
 
-## Project Overview
+We have been provided with the King County House Sales dataset, which is where the entirety of our data will come from. Our method parses through this data, and includes cleaning, preparing, visualizing, modeling, interpreting, and presenting the data. We will use data visualization and linear regression modeling to yield findings and support our recommendations. 
 
-For this project, you will use multiple linear regression modeling to analyze house sales in a northwestern county.
+The features and trends that we will be forming recommendations around include:
+- Square Footage of Living Space 
+- Number of Bathrooms 
+- Number of Bedrooms 
+- Grade of Home
+- Condition of Home
+***
 
-### Business Problem
+## Business Problem
+***
+We are looking to predict the sale price of houses in the King County Housing Market in King County, to create actionable insights for homeowners pertaining to the features of houses that will provide them with the highest financial gain. The homeowners will then be able to use these recommendations when moving forward with where to allocate their time and money with respect to their home renovations. 
 
-It is up to you to define a stakeholder and business problem appropriate to this dataset.
+**By analyzing raw real estate data and breaking down the trends of the housing market in King County, we will be able to advise homeowners on how increase the value of their property.**
 
-If you are struggling to define a stakeholder, we recommend you complete a project for a real estate agency that helps homeowners buy and/or sell homes. A business problem you could focus on for this stakeholder is the need to provide advice to homeowners about how home renovations might increase the estimated value of their homes, and by what amount.
+The analysis below aims to answer the following questions:
 
-### The Data
+1. **How does number of bedrooms impact the selling price of a home in King County?**
 
-This project uses the King County House Sales dataset, which can be found in  `kc_house_data.csv` in the data folder in this assignment's GitHub repository. The description of the column names can be found in `column_names.md` in the same folder. As with most real world data sets, the column names are not perfectly described, so you'll have to do some research or use your best judgment if you have questions about what the data means.
+Understanding how the makeup of a house impacts its price will be crucial in being able to aid homeowners with their renovations and advise them with the most successful strategy to increase the value of their property. It seems likely that the number of bedrooms in a home may be related to its selling price.
 
-It is up to you to decide what data from this dataset to use and how to use it. If you are feeling overwhelmed or behind, we recommend you **ignore** some or all of the following features:
+2. **How does number of bathrooms impact the selling price of a home in King County?**
 
-* `date`
-* `view`
-* `sqft_above`
-* `sqft_basement`
-* `yr_renovated`
-* `zipcode`
-* `lat`
-* `long`
-* `sqft_living15`
-* `sqft_lot15`
+The same holds true here. Our expectation is that the more bathrooms a home has, the higher its selling price will be, but, by how much? Is this significant?
 
-### Key Points
+3. **How does grade impact the selling price of a home in King County?**
 
-* **Your goal in regression modeling is to yield findings to support relevant recommendations. Those findings should include a metric describing overall model performance as well as at least two regression model coefficients.** As you explore the data and refine your stakeholder and business problem definitions, make sure you are also thinking about how a linear regression model adds value to your analysis. "The assignment was to use linear regression" is not an acceptable answer! You can also use additional statistical techniques other than linear regression, so long as you clearly explain why you are using each technique.
+Grade can vary a lot in respect to a home, and in respect to how a home is being graded. Will we see consistency in the data? Does the grade of a home, from one rating to the next, impact the selling price? What is the makeup of this category, and how can we help homeowners implement it?
 
-* **You should demonstrate an iterative approach to modeling.** This means that you must build multiple models. Begin with a basic model, evaluate it, and then provide justification for and proceed to a new model. After you finish refining your models, you should provide 1-3 paragraphs in the notebook discussing your final model.
+4. **How does condition impact the selling price of a home in King County?**
+We believe that the condition of a home would be positively correlated to selling price, and are hoping to find out if this is a strong predictor for that price. If so, this may be a very feasible area for homeowners to make improvements, if it comes down to small repairs and adjustments to keep their home up to date.
+***
 
-* **Data visualization and analysis are no longer explicit project requirements, but they are still very important.** In Phase 1, your project stopped earlier in the CRISP-DM process. Now you are going a step further, to modeling. Data visualization and analysis will help you build better models and tell a better story to your stakeholders.
+These questions are crucial in deciding how we will advise homeowners to move forward, as we will have a better understanding of housing characteristics, and thus, an understanding of what homeowners should focus on to see the greatest possible returns.
+***
 
-## Deliverables
+## The Data
+***
+The data used for this project is from the King County Dataset. This is a dataset of real-estate data from King County, Washington. The dataframe is `kc_house_data`. This dataframe consists of 2,1597 rows and 21 columns. We will be cleaning and adjusting our data quite a bit, and ultimately, 'price', and a new variable that we will call `price_log`, will be the target variable. Each entry in this dataset represents a house sold in King County. Our most relevant columns will be:
 
-There are three deliverables for this project:
+* `sqft_living` (and it's altered forms)
+* `bedrooms` (and it's altered forms)
+* `bathrooms` (and it's altered forms)
+* `grade` (and it's altered forms)
+* `condition` (and it's altered forms)
+* `price` (and it's altered forms)
 
-* A **non-technical presentation**
-* A **Jupyter Notebook**
-* A **GitHub repository**
+Our data process will consist of multiple steps. Ultimately, we will be conducting statistical analyses and developing a Linear Regression model to predict the sale price of a King County house. These predictions will allow us to have concrete numbers and values to help homeowners make informed decisions when faced with renovations. 
 
-The deliverables requirements are almost the same as in the Phase 1 Project, and you can review those extended descriptions [here](https://github.com/learn-co-curriculum/dsc-phase-1-project-v2-3#deliverables). In general, everything is the same except the "Data Visualization" and "Data Analysis" requirements have been replaced by "Modeling" and "Regression Results" requirements.
+Our data process will consist of:
+***
+- Importing and processing the data 
+- Cleaning the data (handling missing values, datatypes, duplicates, etc.)
+- Describing the data and relationships we may see 
+- Transforming variables 
+- Fitting models
+- Gathering insights and interpreting findings 
+- Developing conclusions and recommendations 
+***
 
-### Non-Technical Presentation
+## Methods
+***
+Our data process will consist of multiple steps. Ultimately, we will be conducting statistical analyses and developing a Linear Regression model to predict the sale price of a King County house. The coefficients from this model will be used to find the precise dollar amounts for different features. These predictions will allow us to have concrete numbers and values to help homeowners make informed decisions when faced with renovations. 
 
-Recall that the non-technical presentation is a slide deck presenting your analysis to ***business stakeholders***, and should be presented live as well as submitted in PDF form on Canvas.
+Our data process will consist of:
+***
+- Importing and processing the data 
+- Cleaning the data (handling missing values, datatypes, duplicates, etc.)
+- Describing the data and relationships we may see
+- Handling categorical variables 
+- Transforming variables
+- Scaling data 
+- Handling Multicollinearity
+- Fitting models
+- Checking linear regression assumptions 
+- Gathering insights and interpreting findings 
+- Developing conclusions and recommendations 
+***
 
-We recommend that you follow this structure, although the slide titles should be specific to your project:
+## Modeling 
+***
+Here, we will go through multiple iterations testing our different features against our response variable, and seeing what our `r-squared` value is. This will be our main measure of predictive performance. We will look at multiple metrics throughout this process. 
 
-1. Beginning
-    - Overview
-    - Business and Data Understanding
-2. Middle
-    - **Modeling**
-    - **Regression Results**
-3. End
-    - Recommendations
-    - Next Steps
-    - Thank you
+We will use OLS regression and to determine the success of our model by using: 
 
-Make sure that your discussion of modeling and regression results is geared towards a non-technical audience! Assume that their prior knowledge of regression modeling is minimal. You don't need to explain how linear regression works, but you should explain why linear regression is useful for the problem context. Make sure you translate any metrics or coefficients into their plain language implications.
+`R-squared`: Value communicating how much of the variability of our dependent variable (price) can be explained by the model <br>
+`Adjusted R-squared`: Considers and tests different independent variables against the model. Our r-squared value does not do this, so if we see a difference between the two, we will use the adjusted r-squared<br>
+`Null hypothesis`: Our null hypothesis for these models is that there is not a relationship between price and any chosen variable<br>
+`Alpha`: Our alpha value will be .05<br>
+`P-value`: This is our metric in checking the null hypothesis, and determining the validity of our models predictors. If our p-value is below our alpha of .05, we can reject our null hypothesis<br>
+`Coefficients`: These are values we can use to explain teh relationship between our predictors and our outcome variable <br>
+***
 
-The graded elements for the non-technical presentation are the same as in [Phase 1](https://github.com/learn-co-curriculum/dsc-phase-1-project-v2-3#deliverables).
+## Results
+***
+Our final model is over the goal we set out of having an `r-squared` value of over 60%. Right now, our `adjusted r-squared` stands at **0.622**. This tells us at 62.2% of the variations in price *y* are explained by the features in our model.
 
-### Jupyter Notebook
+We also can be satisfied with our `p-values`, that are all lower than our alpha of .05. This tells us that our features are statistically significant in relation to the variance of our dependent variable, which is price. 
 
-Recall that the Jupyter Notebook is a notebook that uses Python and Markdown to present your analysis to a ***data science audience***. You will submit the notebook in PDF format on Canvas as well as in `.ipynb` format in your GitHub repository.
+## Conclusions
+***
+We have multiple insights that we will be able to share with the Sotheby's team based on our analyses.
 
-The graded elements for the Jupyter Notebook are:
+Our original questions that we posed revolved around square footage, bedrooms, bathrooms, grade, and condition of a home. To our team, these are all areas that seem to be relevant when considering a renovation, and have the potential to increase the value of a home. After a rigorous modeling process, we have some answers. 
 
-* Business Understanding
-* Data Understanding
-* Data Preparation
-* **Modeling**
-* **Regression Results**
-* Code Quality
+**Square Footage**: 
+When it comes to renovating a home, focusing on the square footage of living space in the home matters. We found that for every 1% increase in square footage, there is a .27% increase in price. In other words, for every 20% increase in square footage, our price increases by about 5%. To put this into dollars, according to *Redfin* and *Rocket Homes*, **the median price of a home in King County as of September 2022 is about 815,000 dollars.** Using this as a baseline, our model tells us that if we increased our square footage by 20 percent, the value of our home would increase to $855,750. This is a **40,750 dollar** increase! 
 
-### GitHub Repository
+**Bedrooms**: 
+Unfortunately, our model did not provide us with convincing data on how increasing the number of bedrooms in a home would increase the value of a home. We will discuss this more in **next steps**, discussing how we can learn more about this in the future. That being said, after analyzing the distribution, we do know that while the majority of homes in King County have 3-4 bedrooms, **over 75 percent of the most expensive homes in King County have 4-5 bedrooms.** This is helpful, as we were visually able to see the impact of this jump in bedroom count.
 
-Recall that the GitHub repository is the cloud-hosted directory containing all of your project files as well as their version history.
+**Bathrooms**: 
+Looking at our distributions, we saw that the majority of homes in King County have between 1-2.5 bathrooms, but the majority of the most expensive homes in King County have between 3-4.5 bathrooms. As we look at the trend of our data, it is clear that as the number of bathrooms in a home increases, the price of the home increases. Every single one of our dummy variables with price is positive. From this, we can understand that the addition of each new bathroom in a home increases the value of the home by a positive percentage. For example, having 4 bathrooms adds 31.49 percent to our sale price, where having 1.75 bathrooms adds 8.42 percent to our sale price. 
 
-The requirements are the same as in [Phase 1](https://github.com/learn-co-curriculum/dsc-phase-1-project-v2-3#github-repository), except for the required sections in the `README.md`.
+**Grade**: 
+We saw from the beginning that grade is one of the biggest predictors of price. This was a great finding for us, as often, renovations revolve around grade improvements. Our model shows that having a grade **above 9** adds value to our home. When our home reaches a grade status of 11, 12, and 13, we significant increases to our sale price. This tells us that this may be the prime feature to focus on with home renovations, where our homeowners are likely to reap the rewards of their investments. This is what they should aim for:
 
-For this project, the `README.md` file should contain:
+*Grade 11: Custom design and higher quality finish work with added amenities of solid woods, bathroom fixtures and more luxurious options.*
 
-* Overview
-* Business and Data Understanding
-  * Explain your stakeholder audience here
-* **Modeling**
-* **Regression Results**
-* Conclusion
+*Grade 12: Custom design and excellent builders. All materials are of the highest quality and all conveniences are present.* 
 
-Just like in Phase 1, the `README.md` file should be the bridge between your non technical presentation and the Jupyter Notebook. It should not contain the code used to develop your analysis, but should provide a more in-depth explanation of your methodology and analysis than what is described in your presentation slides.
+*Grade 13: Generally custom designed and built. Mansion level. Large amount of highest quality cabinet work, wood trim, marble, entry ways etc*  
 
-## Grading
+In short, achieving a home categorized as Grade 11 Luxury increases the value of a home by 37.5 percent. Using our same basline from our square footage calculations, this could mean **increasing the price of a home from 815,000 dollars to 1,120,625 dollars.** This is a 305,625 dollar increase!
 
-***To pass this project, you must pass each project rubric objective.*** The project rubric objectives for Phase 2 are:
+**Condition**: 
+Similar to grade, we see that condition has a large impact on selling price. Having a Fair Condition has a negative impact on our price, while having a Good or Very Good condition increases the value of our home. Again, this is unsurprising. We suggest that our homeowners aim for the following condition standards:
 
-1. Attention to Detail
-2. Statistical Communication
-3. Data Preparation Fundamentals
-4. Linear Modeling
+*4 - Good. No obvious maintenance required but neither is everything new. Appearance and utility are above the standard and the overall effective age will be lower than the typical property.*
 
-### Attention to Detail
+*5 - Very Good. All items well maintained, many having been overhauled and repaired as they have shown signs of wear, increasing the life expectancy and lowering the effective age with little deterioration or obsolescence evident with a high degree of utility.*
 
-Just like in Phase 1, this rubric objective is based on your completion of checklist items. ***In Phase 2, you need to complete 70% (7 out of 10) or more of the checklist elements in order to pass the Attention to Detail objective.***
+Our model tells us that **having a home categorized as Fair decreases the value of a home by about 14.73 percent, but having a home categorized as Good increases its value by about 19.39 percent.** Again, in today's market **this variation accounts for a home price that can range from 694,950.50 - 973,028.50 dollars. That is a 278,078 dollar difference!
+*** 
 
-**NOTE THAT THE PASSING BAR IS HIGHER IN PHASE 2 THAN IT WAS IN PHASE 1!**
+## Next Steps 
+***
+As confident as we are in our recommendations, there is a lot of nuance to our model and we know small changes can be a big difference. Going forward, these would be our areas of focus: 
 
-The standard will increase with each Phase, until you will be required to complete all elements to pass Phase 5 (Capstone).
+1. Look into location - we did not analyze our zipcode or latitude and longitude data. We know the age old saying: 'Location, Location, Location.' In other words, identical homes can increase or decrease in value due to location. We want to help homeowners with how best to renovate their homes, but maybe in one part of King County, adding a bathroom detracts from the sale price, while in another area, adding a bathroom doubles the sale price? These are patterns we can begin to analyze with location data.
 
-#### Exceeds Objective
+2. Our data is outdated, only extending to the year 2015, and only including data from 2014 and 2015. We were able to complete our analysis with this data, but further work would definitely include extending this to the current real estate climate, as we know how fickle the housing market can be.
 
-80% or more of the project checklist items are complete
+3. A large part of our emphasis has been on improving the condition and grade of a home. But, how can we now help homeowners with the specifics of that? For condition, we can look deeper into the best ways to maintain a home, at the lowest cost to our homeowners. For grade, we can look into solid woods, bathroom fixtures, cabinet work, wood trim, marble, and entry ways, and see which of these characteristics increase selling price the most, and advise our homeowners to allocate their money in that direction.
 
-#### Meets Objective (Passing Bar)
+4. Although we have seen what characteristics of renovation may be useful, we have not tracked this in relation to the cost of each renovation. This is somewhere we could direct our energy in the future. If we find that the return of time and money on adding a bathroom is far less than that of adding marble and wood trim to a home, maybe that is where we suggest our homeowners allocate their resources. 
+***
 
-70% of the project checklist items are complete
+## For More Information
+***
+Please review our full analysis in our Jupyter Notebook or our presentation.
 
-#### Approaching Objective
+For any additional questions, please contact Hana Kerner at haych20@gmail.com
+***
 
-60% of the project checklist items are complete
+## Repository Structure
+***
+├── images                              <- Both sourced externally and generated from code
+├── data                                <- Both sourced externally and generated from code
+├── README.md                           <- The top-level README for reviewers of this project
+├── final_notebook.ipynb                <- Narrative documentation of analysis in Jupyter notebook
+└── presentation.pdf                    <- PDF version of project presentation
 
-#### Does Not Meet Objective
-
-50% or fewer of the project checklist items are complete
-
-### Statistical Communication
-
-Recall that communication is one of the key data science "soft skills". In Phase 2, we are specifically focused on Statistical Communication. We define Statistical Communication as:
-
-> Communicating **results of statistical analyses** to diverse audiences via writing and live presentation
-
-Note that this is the same as in Phase 1, except we are replacing "basic data analysis" with "statistical analyses".
-
-High-quality Statistical Communication includes rationale, results, limitations, and recommendations:
-
-* **Rationale:** Explaining why you are using statistical analyses rather than basic data analysis
-  * For example, why are you using regression coefficients rather than just a graph?
-  * What about the problem or data is suitable for this form of analysis?
-  * For a data science audience, this includes your reasoning for the changes you applied while iterating between models.
-* **Results:** Describing the overall model metrics and feature coefficients
-  * You need at least one overall model metric (e.g. r-squared or RMSE) and at least two feature coefficients.
-  * For a business audience, make sure you connect any metrics to real-world implications. You do not need to get into the details of how linear regression works.
-  * For a data science audience, you don't need to explain what a metric is, but make sure you explain why you chose that particular one.
-* **Limitations:** Identifying the limitations and/or uncertainty present in your analysis
-  * This could include p-values/alpha values, confidence intervals, assumptions of linear regression, missing data, etc.
-  * In general, this should be more in-depth for a data science audience and more surface-level for a business audience.
-* **Recommendations:** Interpreting the model results and limitations in the context of the business problem
-  * What should stakeholders _do_ with this information?
-
-#### Exceeds Objective
-
-Communicates the rationale, results, limitations, and specific recommendations of statistical analyses
-
-> See above for extended explanations of these terms.
-
-#### Meets Objective (Passing Bar)
-
-Successfully communicates the results of statistical analyses without any major errors
-
-> The minimum requirement is to communicate the _results_, meaning at least one overall model metric (e.g. r-squared or RMSE) as well as at least two feature coefficients. See the Approaching Objective section for an explanation of what a "major error" means.
-
-#### Approaching Objective
-
-Communicates the results of statistical analyses with at least one major error
-
-> A major error means that some aspect of your explanation is fundamentally incorrect. For example, if a feature coefficient is negative and you say that an increase in that feature results in an increase of the target, that would be a major error. Another example would be if you say that the feature with the highest coefficient is the "most statistically significant" while ignoring the p-value. One more example would be reporting a coefficient that is not statistically significant, rather than saying "no statistically significant linear relationship was found"
-
-> "**If a coefficient's t-statistic is not significant, don't interpret it at all.** You can't be sure that the value of the corresponding parameter in the underlying regression model isn't really zero." _DeVeaux, Velleman, and Bock (2012), Stats: Data and Models, 3rd edition, pg. 801_. Check out [this website](https://web.ma.utexas.edu/users/mks/statmistakes/TOC.html) for extensive additional examples of mistakes using statistics.
-
-> The easiest way to avoid making a major error is to have someone double-check your work. Reach out to peers on Slack and ask them to confirm whether your interpretation makes sense!
-
-#### Does Not Meet Objective
-
-Does not communicate the results of statistical analyses
-
-> It is not sufficient to just display the entire results summary. You need to pull out at least one overall model metric (e.g. r-squared, RMSE) and at least two feature coefficients, and explain what those numbers mean.
-
-### Data Preparation Fundamentals
-
-We define this objective as:
-
-> Applying appropriate **preprocessing** and feature engineering steps to tabular data in preparation for statistical modeling
-
-The two most important components of preprocessing for the Phase 2 project are:
-
-* **Handling Missing Values:** Missing values may be present in the features you want to use, either encoded as `NaN` or as some other value such as `"?"`. Before you can build a linear regression model, make sure you identify and address any missing values using techniques such as dropping or replacing data.
-* **Handling Non-Numeric Data:** A linear regression model needs all of the features to be numeric, not categorical. For this project, ***be sure to pick at least one non-numeric feature and try including it in a model.*** You can identify that a feature is currently non-numeric if the type is `object` when you run `.info()` on your dataframe. Once you have identified the non-numeric features, address them using techniques such as ordinal or one-hot (dummy) encoding.
-
-There is no single correct way to handle either of these situations! Use your best judgement to decide what to do, and be sure to explain your rationale in the Markdown of your notebook.
-
-Feature engineering is encouraged but not required for this project.
-
-#### Exceeds Objective
-
-Goes above and beyond with data preparation, such as feature engineering or merging in outside datasets
-
-> One example of feature engineering could be using the `date` feature to create a new feature called `season`, which represents whether the home was sold in Spring, Summer, Fall, or Winter.
-
-> One example of merging in outside datasets could be finding data based on ZIP Code, such as household income or walkability, and joining that data with the provided CSV.
-
-#### Meets Objective (Passing Bar)
-
-Successfully prepares data for modeling, including converting at least one non-numeric feature into ordinal or binary data and handling missing data as needed
-
-> As a reminder, you can identify the non-numeric features by calling `.info()` on the dataframe and looking for type `object`.
-
-> Your final model does not necessarily need to include any features that were originally non-numeric, but you need to demonstrate your ability to handle this type of data.
-
-#### Approaching Objective
-
-Prepares some data successfully, but is unable to utilize non-numeric data
-
-> If you simply subset the dataframe to only columns with type `int64` or `float64`, your model will run, but you will not pass this objective.
-
-#### Does Not Meet Objective
-
-Does not prepare data for modeling
-
-### Linear Modeling
-
-According to [Kaggle's 2020 State of Data Science and Machine Learning Survey](https://www.kaggle.com/kaggle-survey-2020), linear and logistic regression are the most popular machine learning algorithms, used by 83.7% of data scientists. They are small, fast models compared to some of the models you will learn later, but have limitations in the kinds of relationships they are able to learn.
-
-In this project you are required to use linear regression as the primary statistical analysis, although you are free to use additional statistical techniques as appropriate.
-
-#### Exceeds Objective
-
-Goes above and beyond in the modeling process, such as recursive feature selection
-
-#### Meets Objective (Passing Bar)
-
-Successfully builds a baseline model as well as at least one iterated model, and correctly extracts insights from a final model without any major errors
-
-> We are looking for you to (1) create a baseline model, (2) iterate on that model, making adjustments that are supported by regression theory or by descriptive analysis of the data, and (3) select a final model and report on its metrics and coefficients
-
-> Ideally you would include written justifications for each model iteration, but at minimum the iterations must be _justifiable_
-
-> For an explanation of "major errors", see the description below
-
-#### Approaching Objective
-
-Builds multiple models with at least one major error
-
-> The number one major error to avoid is including the target as one of your features. For example, if the target is `price` you should NOT make a "price per square foot" feature, because that feature would not be available if you didn't already know the price.
-
-> Other examples of major errors include: using a target other than `price`, attempting only simple linear regression (not multiple linear regression), dropping multiple one-hot encoded columns without explaining the resulting baseline, or using a unique identifier (`id` in this dataset) as a feature.
-
-#### Does Not Meet Objective
-
-Does not build multiple linear regression models
-
-## Getting Started
-
-Please start by reviewing the contents of this project description. If you have any questions, please ask your instructor ASAP.
-
-Next, you will need to complete the [***Project Proposal***](#project_proposal) which must be reviewed by your instructor before you can continue with the project.
-
-Here are some suggestions for creating your GitHub repository:
-
-1. Fork the [Phase 2 Project Repository](https://github.com/learn-co-curriculum/dsc-phase-2-project-v2-3), clone it locally, and work in the `student.ipynb` file. Make sure to also add and commit a PDF of your presentation to your repository with a file name of `presentation.pdf`.
-2. Or, create a new repository from scratch by going to [github.com/new](https://github.com/new) and copying the data files from the Phase 2 Project Repository into your new repository.
-   - Recall that you can refer to the [Phase 1 Project Template](https://github.com/learn-co-curriculum/dsc-project-template) as an example structure
-   - This option will result in the most professional-looking portfolio repository, but can be more complicated to use. So if you are getting stuck with this option, try forking the project repository instead
-
-## Summary
-
-This is your first modeling project! Take what you have learned in Phase 2 to create a project with a more sophisticated analysis than you completed in Phase 1. You will build on these skills as we move into the predictive machine learning mindset in Phase 3. You've got this!
