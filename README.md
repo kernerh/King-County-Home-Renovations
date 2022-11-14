@@ -1,7 +1,7 @@
 # King County Home Renovations 
 Author: Hana Kerner
 
-![King County](KingCounty.jpeg)
+![King County](./images/KingCounty.jpeg)
 
 
 ## Overview
