@@ -1,12 +1,10 @@
 # King County Home Renovations 
-***
 Author: Hana Kerner
 
-![King County](KingCounty.png)
+![King County](KingCounty.jpeg)
 
 
 ## Overview
-***
 Established in 1976, Sotheby’s International Realty has become the world’s premier luxury residential real estate brokerage. With a global footprint and international network spanning across 74 countries and territories, Sotheby's is most involved in New York, France, Italy, Madrid, Miami, Hong Kong, Bahamas, and Tokyo. Sotheby’s is working to gather a more nuanced understanding of the real estate market in King County, Washington. However, rather than selling new homes, their current interests lie with renovations. They have tasked us with gaining insights as to where they should advise homeowner’s to spend their money, when they are looking to renovate. 
 
 Our goal is to help homeowners decide where they should allocate their time, money, and resources when renovating. Our focus is to provide advice to homeowners on how specific renovations may increase the estimated value of their homes, and what dollar value is attached to this. We are looking to gather insights into the historical housing market trends, to be able to provide homeowners with the best possible recommendations.  
@@ -21,10 +19,8 @@ The features and trends that we will be forming recommendations around include:
 - Number of Bedrooms 
 - Grade of Home
 - Condition of Home
-***
 
 ## Business Problem
-***
 We are looking to predict the sale price of houses in the King County Housing Market in King County, to create actionable insights for homeowners pertaining to the features of houses that will provide them with the highest financial gain. The homeowners will then be able to use these recommendations when moving forward with where to allocate their time and money with respect to their home renovations. 
 
 **By analyzing raw real estate data and breaking down the trends of the housing market in King County, we will be able to advise homeowners on how increase the value of their property.**
@@ -48,10 +44,8 @@ We believe that the condition of a home would be positively correlated to sellin
 ***
 
 These questions are crucial in deciding how we will advise homeowners to move forward, as we will have a better understanding of housing characteristics, and thus, an understanding of what homeowners should focus on to see the greatest possible returns.
-***
 
 ## The Data
-***
 The data used for this project is from the King County Dataset. This is a dataset of real-estate data from King County, Washington. The dataframe is `kc_house_data`. This dataframe consists of 2,1597 rows and 21 columns. We will be cleaning and adjusting our data quite a bit, and ultimately, 'price', and a new variable that we will call `price_log`, will be the target variable. Each entry in this dataset represents a house sold in King County. Our most relevant columns will be:
 
 * `sqft_living` (and it's altered forms)
@@ -64,7 +58,7 @@ The data used for this project is from the King County Dataset. This is a datase
 Our data process will consist of multiple steps. Ultimately, we will be conducting statistical analyses and developing a Linear Regression model to predict the sale price of a King County house. These predictions will allow us to have concrete numbers and values to help homeowners make informed decisions when faced with renovations. 
 
 Our data process will consist of:
-***
+
 - Importing and processing the data 
 - Cleaning the data (handling missing values, datatypes, duplicates, etc.)
 - Describing the data and relationships we may see 
@@ -72,14 +66,12 @@ Our data process will consist of:
 - Fitting models
 - Gathering insights and interpreting findings 
 - Developing conclusions and recommendations 
-***
 
 ## Methods
-***
 Our data process will consist of multiple steps. Ultimately, we will be conducting statistical analyses and developing a Linear Regression model to predict the sale price of a King County house. The coefficients from this model will be used to find the precise dollar amounts for different features. These predictions will allow us to have concrete numbers and values to help homeowners make informed decisions when faced with renovations. 
 
 Our data process will consist of:
-***
+
 - Importing and processing the data 
 - Cleaning the data (handling missing values, datatypes, duplicates, etc.)
 - Describing the data and relationships we may see
@@ -91,10 +83,8 @@ Our data process will consist of:
 - Checking linear regression assumptions 
 - Gathering insights and interpreting findings 
 - Developing conclusions and recommendations 
-***
 
 ## Modeling 
-***
 Here, we will go through multiple iterations testing our different features against our response variable, and seeing what our `r-squared` value is. This will be our main measure of predictive performance. We will look at multiple metrics throughout this process. 
 
 We will use OLS regression and to determine the success of our model by using: 
@@ -105,16 +95,13 @@ We will use OLS regression and to determine the success of our model by using:
 `Alpha`: Our alpha value will be .05<br>
 `P-value`: This is our metric in checking the null hypothesis, and determining the validity of our models predictors. If our p-value is below our alpha of .05, we can reject our null hypothesis<br>
 `Coefficients`: These are values we can use to explain teh relationship between our predictors and our outcome variable <br>
-***
 
 ## Results
-***
 Our final model is over the goal we set out of having an `r-squared` value of over 60%. Right now, our `adjusted r-squared` stands at **0.622**. This tells us at 62.2% of the variations in price *y* are explained by the features in our model.
 
 We also can be satisfied with our `p-values`, that are all lower than our alpha of .05. This tells us that our features are statistically significant in relation to the variance of our dependent variable, which is price. 
 
 ## Conclusions
-***
 We have multiple insights that we will be able to share with the Sotheby's team based on our analyses.
 
 Our original questions that we posed revolved around square footage, bedrooms, bathrooms, grade, and condition of a home. To our team, these are all areas that seem to be relevant when considering a renovation, and have the potential to increase the value of a home. After a rigorous modeling process, we have some answers. 
@@ -147,10 +134,8 @@ Similar to grade, we see that condition has a large impact on selling price. Hav
 *5 - Very Good. All items well maintained, many having been overhauled and repaired as they have shown signs of wear, increasing the life expectancy and lowering the effective age with little deterioration or obsolescence evident with a high degree of utility.*
 
 Our model tells us that **having a home categorized as Fair decreases the value of a home by about 14.73 percent, but having a home categorized as Good increases its value by about 19.39 percent.** Again, in today's market **this variation accounts for a home price that can range from 694,950.50 - 973,028.50 dollars. That is a 278,078 dollar difference!
-*** 
 
 ## Next Steps 
-***
 As confident as we are in our recommendations, there is a lot of nuance to our model and we know small changes can be a big difference. Going forward, these would be our areas of focus: 
 
 1. Look into location - we did not analyze our zipcode or latitude and longitude data. We know the age old saying: 'Location, Location, Location.' In other words, identical homes can increase or decrease in value due to location. We want to help homeowners with how best to renovate their homes, but maybe in one part of King County, adding a bathroom detracts from the sale price, while in another area, adding a bathroom doubles the sale price? These are patterns we can begin to analyze with location data.
@@ -160,20 +145,19 @@ As confident as we are in our recommendations, there is a lot of nuance to our m
 3. A large part of our emphasis has been on improving the condition and grade of a home. But, how can we now help homeowners with the specifics of that? For condition, we can look deeper into the best ways to maintain a home, at the lowest cost to our homeowners. For grade, we can look into solid woods, bathroom fixtures, cabinet work, wood trim, marble, and entry ways, and see which of these characteristics increase selling price the most, and advise our homeowners to allocate their money in that direction.
 
 4. Although we have seen what characteristics of renovation may be useful, we have not tracked this in relation to the cost of each renovation. This is somewhere we could direct our energy in the future. If we find that the return of time and money on adding a bathroom is far less than that of adding marble and wood trim to a home, maybe that is where we suggest our homeowners allocate their resources. 
-***
 
 ## For More Information
-***
-Please review our full analysis in our Jupyter Notebook or our presentation.
+Please review our full analysis in [our Jupyter Notebook](./final_notebook.ipynb) or our [presentation](./presentation.pdf).
 
-For any additional questions, please contact Hana Kerner at haych20@gmail.com
-***
+For any additional questions, please contact **Hana Kerner at haych20@gmail.com**
 
 ## Repository Structure
-***
-├── images                              <- Both sourced externally and generated from code
+```
 ├── data                                <- Both sourced externally and generated from code
+├── images                              <- Both sourced externally and generated from code
+├── other                               <- Both sourced externally and generated from code
 ├── README.md                           <- The top-level README for reviewers of this project
 ├── final_notebook.ipynb                <- Narrative documentation of analysis in Jupyter notebook
 └── presentation.pdf                    <- PDF version of project presentation
+```
 
